@@ -17,14 +17,14 @@ uchar4 RS_KERNEL colorize(uchar4 in) {
     else {
         s = delta_rgb / max_rgb;
     }
-    float v = max_rgb; //for value (or lightness)
+    float v = max_rgb; //for value (lightness)
     float c = v*s; //c, x, m : three floats to compute the new r, g and b
     float h = hue/60.0f;
     h = fmod(h, 2.0f) - 1.0f;
     h = fabs(h);
     float x = c*(1.0f - h);
     float m = v - c;
-    if (hue < 60.0f) { //r, g and b depend on hue
+    if (hue < 60.0f) { //new r, g and b depend on hue
         r = c;
         g = x;
         b = 0.0f;

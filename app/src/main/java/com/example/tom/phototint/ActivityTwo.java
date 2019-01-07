@@ -184,41 +184,6 @@ public class ActivityTwo extends AppCompatActivity {
         bmp.setPixels(pixs, 0, width, 0, 0, width, height);
     }
 
-    public void convolution(Bitmap bmp, int length_kernel, int nb_operators, int[] kernels) {
-        int width = bmp.getWidth();
-        int height = bmp.getHeight();
-        int nb_pixs = width*height;
-        int [] pixs = new int[nb_pixs];
-        int r;
-        int g;
-        int b;
-        int [] lums = new int[nb_pixs];
-        int [] new_lums = new int[nb_pixs];
-        int size_kernel = length_kernel*length_kernel;
-        bmp.getPixels(pixs, 0, width, 0, 0, width, height);
-        for (int i = 0; i < nb_pixs; i++) {
-            r = Color.red(pixs[i]);
-            g = Color.green(pixs[i]);
-            b = Color.blue(pixs[i]);
-            lums[i] = (int) ((0.3*r) + (0.59*g) + (0.11*b));
-        }
-        for (int j = 0; j < nb_operators; j++) {
-            for (int k = 0; k < nb_pixs; k++) {
-                new_lums[k] = 0;
-                for (int l = 0; l < size_kernel; l++) {
-                    if ((k + l - ((width + 1)*(length_kernel/2))) < 0 || (k + l - ((width + 1)*(length_kernel/2))) >= nb_pixs) {
-                        new_lums[k] = lums[k];
-                        break;
-                    }
-                    else {
-                        new_lums[k] = new_lums[k] + (kernels[l] * lums[k + l - (length_kernel/2)]);
-                    }
-                }
-            }
-        }
-        bmp.setPixels(pixs, 0, width, 0, 0, width, height);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -250,8 +215,8 @@ public class ActivityTwo extends AppCompatActivity {
                 decreaseContrast(b_lady);
             }
         });
-        Button b_i_contrast_he = (Button) findViewById(R.id.b_contrasthe);
-        b_i_contrast_he.setOnClickListener(new View.OnClickListener() {
+        Button b_i_contrasthe = (Button) findViewById(R.id.b_contrasthe);
+        b_i_contrasthe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 increaseContrastHE(b_lady);
             }

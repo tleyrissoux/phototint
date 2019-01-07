@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         int g;
         int b;
         float[] hsv = new float[3];
-        float hue = (float) (Math.random() * 360.0);
+        float hue = (float) (Math.random()*360.0);
         bmp.getPixels(pixs, 0, width, 0, 0, width, height);
         for (int i = 0; i < (width*height); i++) {
             a = Color.alpha(pixs[i]);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         ScriptC_color colorScript = new ScriptC_color(rs);
 
-        colorScript.set_hue((float) (Math.random() * 360.0));
+        colorScript.set_hue((float) (Math.random()*360.0));
 
         colorScript.forEach_colorize(input, output);
 
@@ -170,8 +170,8 @@ public class MainActivity extends AppCompatActivity {
             r = Color.red(pixs[i]);
             g = Color.green(pixs[i]);
             b = Color.blue(pixs[i]);
-            lum = (int) ((0.3*r) + (0.59*g) + (0.11*b));
             if (r < 125 || g > 125 || b > 125) {
+                lum = (int) ((0.3*r) + (0.59*g) + (0.11*b));
                 pixs[i] = Color.argb(a, lum, lum, lum);
             }
         }
@@ -320,8 +320,7 @@ public class MainActivity extends AppCompatActivity {
         });
         Button b_i_contrastde = (Button) findViewById(R.id.b_contrastde2);
         b_i_contrastde.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                increaseContrastDE(b_poivron);
+            public void onClick(View v) {increaseContrastDE(b_poivron);
             }
         });
         Button b_next = (Button) findViewById(R.id.b_act_two);
